@@ -34,12 +34,6 @@ void insertAtHead(Node* &head, int d) {
     head = temp;
 }
 
-void insertAtTail(Node* &tail, int d) {
-     // new node create
-    Node* temp = new Node(d);
-    tail -> next = temp;
-    tail  = temp;
-}
 
 void print(Node* &head) {
 
@@ -56,7 +50,7 @@ void print(Node* &head) {
     cout << endl;
 }
 
-void insertAtPosition(Node* &tail, Node* & head, int position, int d) {
+void insertAtPosition(Node* & head, int position, int d) {
 
 
     //insert at Start
@@ -71,12 +65,6 @@ void insertAtPosition(Node* &tail, Node* & head, int position, int d) {
     while(cnt < position-1) {
         temp = temp->next;
         cnt++;
-    }
-
-    //inserting at Last Position
-    if(temp -> next == NULL) {
-        insertAtTail(tail,d);
-        return ;
     }
 
     //creating a node for d
@@ -117,44 +105,23 @@ void deleteNode(int position, Node* & head) {
     }
 }
 
-int main()
-{
-
-    // Create a new node with data 10 and store it in node1
-    Node* node1 = new Node(10); // This creates a node on the heap
-
-    // Print the data and next pointer of node1
-    // cout << node1->data << endl;
-    // cout << node1->next << endl;
-
-    // Set the head of the linked list to node1
+int main() {
+    Node* node1 = new Node(10);
     Node* head = node1;
-    Node* tail = node1;
 
-    // Print the linked list (it only contains node1)
     print(head);
 
-    // Insert a new node with data 12 at the head of the list
-    insertAtTail(tail, 12);
-
-    // Print the linked list (now it contains node with 12 and node1)
+    insertAtPosition(head, 2, 12);
     print(head);
 
-    // Insert a new node with data 15 at the head of the list
-    insertAtTail(tail, 15);
-
-    // Print the linked list (now it contains node with 15, 12, and node1)
+    insertAtPosition(head, 3, 15);
     print(head);
 
-    insertAtPosition(tail,head, 4 ,22);
+    insertAtPosition(head, 4, 22);
     print(head);
-
-    cout << "head " << head -> data << endl;
-    cout << "tail " << tail -> data << endl;
 
     deleteNode(3, head);
     print(head);
-
 
     return 0;
 }
